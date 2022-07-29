@@ -5,6 +5,9 @@ inputs:
     description: Input secrets
     required: false
 outputs:
+  git_branch:
+    description: 'app type output git_branch'
+    value: ${{ steps.app_env.outputs.git_branch }}
   gcp_project:
     description: 'app type output gcp_project'
     value: ${{ steps.app_env.outputs.gcp_project }}
@@ -33,6 +36,10 @@ runs:
       shell: bash
       run: |
         if [[ "${{ steps.extract_branch.outputs.branch }}" == "alpha" ]]; then
+          git_branch="${{ steps.extract_branch.outputs.branch }}"
+          echo "GIT_BRANCH=${git_branch}" >> $GITHUB_ENV
+          echo "::set-output name=git_branch::$(echo $git_branch)"
+        
           gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_DEV }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "::set-output name=gcp_project::$(echo $gcp_project)"
