@@ -48,43 +48,43 @@ runs:
       shell: bash
       run: |
         if [[ "${{ steps.extract_branch.outputs.branch }}" == "alpha" ]]; then
-          access_token="${{ fromJson(inputs.secrets)ACCESS_TOKEN }}"
+          access_token="${{ fromJson(inputs.secrets).ACCESS_TOKEN }}"
           echo "ACCESS_TOKEN=${access_token}" >> $GITHUB_ENV
           echo "::set-output name=access_token::$(echo $access_token)"
 
-          actions_step_debug="${{ fromJson(inputs.secrets)ACTIONS_STEP_DEBUG }}"
+          actions_step_debug="${{ fromJson(inputs.secrets).ACTIONS_STEP_DEBUG }}"
           echo "ACTIONS_STEP_DEBUG=${actions_step_debug}" >> $GITHUB_ENV
           echo "::set-output name=actions_step_debug::$(echo $actions_step_debug)"
 
-          argocd_passward="${{ fromJson(inputs.secrets)ARGOCD_PASSWARD }}"
+          argocd_passward="${{ fromJson(inputs.secrets).ARGOCD_PASSWARD }}"
           echo "ARGOCD_PASSWARD=${argocd_passward}" >> $GITHUB_ENV
           echo "::set-output name=argocd_passward::$(echo $argocd_passward)"
 
-          gcp_project="${{ fromJson(inputs.secrets)GCP_PROJECT_DEV }}"
+          gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_DEV }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "::set-output name=gcp_project::$(echo $gcp_project)"
 
-          gcp_region="${{ fromJson(inputs.secrets)GCP_REGION_DEV }}"
+          gcp_region="${{ fromJson(inputs.secrets).GCP_REGION_DEV }}"
           echo "GCP_REGION=${gcp_region}" >> $GITHUB_ENV
           echo "::set-output name=gcp_region::$(echo $gcp_region)"
 
-          gcp_sa="${{ fromJson(inputs.secrets)GCP_SA_DEV }}"
+          gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_DEV }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
           echo "::set-output name=gcp_sa::$(echo $gcp_sa)"
 
-          gcp_wip="${{ fromJson(inputs.secrets)GCP_WIP_DEV }}"
+          gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_DEV }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
           echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
 
-          name="${{ fromJson(inputs.secrets)NAME_DEV }}"
+          name="${{ fromJson(inputs.secrets).NAME_DEV }}"
           echo "NAME=${name}" >> $GITHUB_ENV
           echo "::set-output name=name::$(echo $name)"
 
-          private_key="${{ fromJson(inputs.secrets)PRIVATE_KEY }}"
+          private_key="${{ fromJson(inputs.secrets).PRIVATE_KEY }}"
           echo "PRIVATE_KEY=${private_key}" >> $GITHUB_ENV
           echo "::set-output name=private_key::$(echo $private_key)"
 
-          public_key="${{ fromJson(inputs.secrets)PUBLIC_KEY }}"
+          public_key="${{ fromJson(inputs.secrets).PUBLIC_KEY }}"
           echo "PUBLIC_KEY=${public_key}" >> $GITHUB_ENV
           echo "::set-output name=public_key::$(echo $public_key)"
         fi
