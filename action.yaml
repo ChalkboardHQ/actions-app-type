@@ -47,8 +47,7 @@ runs:
       shell: bash
       id: set_var
       run: |
-      content=${{inputs.secrets}}
-      # the following lines are only required for multi line json
+      content="${{inputs.secrets}}"
       content="${content//'%'/'%25'}"
       content="${content//$'\n'/'%0A'}"
       content="${content//$'\r'/'%0D'}"
@@ -59,43 +58,43 @@ runs:
       shell: bash
       run: |
         if [[ "${{ steps.extract_branch.outputs.branch }}" == "alpha" ]]; then
-          access_token="${{ secrets.ACCESS_TOKEN }}"
+          access_token="${{ fromJson(steps.set_var.outputs.secrets).ACCESS_TOKEN }}"
           echo "ACCESS_TOKEN=${access_token}" >> $GITHUB_ENV
           echo "::set-output name=access_token::$(echo $access_token)"
 
-          actions_step_debug="${{ secrets.ACTIONS_STEP_DEBUG }}"
+          actions_step_debug="${{ fromJson(steps.set_var.outputs.secrets).ACTIONS_STEP_DEBUG }}"
           echo "ACTIONS_STEP_DEBUG=${actions_step_debug}" >> $GITHUB_ENV
           echo "::set-output name=actions_step_debug::$(echo $actions_step_debug)"
 
-          argocd_passward="${{ secrets.ARGOCD_PASSWARD }}"
+          argocd_passward="${{ fromJson(steps.set_var.outputs.secrets).ARGOCD_PASSWARD }}"
           echo "ARGOCD_PASSWARD=${argocd_passward}" >> $GITHUB_ENV
           echo "::set-output name=argocd_passward::$(echo $argocd_passward)"
 
-          gcp_project="${{ secrets.GCP_PROJECT_DEV }}"
+          gcp_project="${{ fromJson(steps.set_var.outputs.secrets).GCP_PROJECT_DEV }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "::set-output name=gcp_project::$(echo $gcp_project)"
 
-          gcp_region="${{ secrets.GCP_REGION_DEV }}"
+          gcp_region="${{ fromJson(steps.set_var.outputs.secrets).GCP_REGION_DEV }}"
           echo "GCP_REGION=${gcp_region}" >> $GITHUB_ENV
           echo "::set-output name=gcp_region::$(echo $gcp_region)"
 
-          gcp_sa="${{ secrets.GCP_SA_DEV }}"
+          gcp_sa="${{ fromJson(steps.set_var.outputs.secrets).GCP_SA_DEV }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
           echo "::set-output name=gcp_sa::$(echo $gcp_sa)"
 
-          gcp_wip="${{ secrets.GCP_WIP_DEV }}"
+          gcp_wip="${{ fromJson(steps.set_var.outputs.secrets).GCP_WIP_DEV }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
           echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
 
-          name="${{ secrets.NAME_DEV }}"
+          name="${{ fromJson(steps.set_var.outputs.secrets).NAME_DEV }}"
           echo "NAME=${name}" >> $GITHUB_ENV
           echo "::set-output name=name::$(echo $name)"
 
-          private_key="${{ secrets.PRIVATE_KEY }}"
+          private_key="${{ fromJson(steps.set_var.outputs.secrets).PRIVATE_KEY }}"
           echo "PRIVATE_KEY=${private_key}" >> $GITHUB_ENV
           echo "::set-output name=private_key::$(echo $private_key)"
 
-          public_key="${{ secrets.PUBLIC_KEY }}"
+          public_key="${{ fromJson(steps.set_var.outputs.secrets).PUBLIC_KEY }}"
           echo "PUBLIC_KEY=${public_key}" >> $GITHUB_ENV
           echo "::set-output name=public_key::$(echo $public_key)"
         fi
