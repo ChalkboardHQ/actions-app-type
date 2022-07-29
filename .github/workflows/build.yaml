@@ -12,19 +12,6 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-#      - name: Set Node.js 16.x
-#        uses: actions/setup-node@v2.5.1
-#        with:
-#          node-version: 16.x
-
-#      - name: Install dependencies
-#        run: npm ci
-
-#      - name: Rebuild the dest/ directory
-#        run: |
-#          npm run build
-#          npm run package
-
       - name: Compare the expected and actual dest/ directories
         run: |
           if [ "$(git diff --ignore-space-at-eol dest/ | wc -l)" -gt "0" ]; then
