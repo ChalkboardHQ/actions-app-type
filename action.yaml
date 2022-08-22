@@ -20,6 +20,9 @@ outputs:
   gcp_wip:
     description: 'app type output gcp_wip'
     value: ${{ steps.app_env.outputs.gcp_wip }}
+  access_token:
+    description: 'app type output access_token'
+    value: ${{ steps.app_env.outputs.access_token }}
   name:
     description: 'app type output name'
     value: ${{ steps.app_env.outputs.name }}
@@ -58,5 +61,10 @@ runs:
 
           name="${{ fromJson(inputs.secrets).NAME_DEV }}"
           echo "NAME=${name}" >> $GITHUB_ENV
+          echo "::set-output name=name::$(echo $name)"
+
+#          name="${{ fromJson(inputs.secrets).ACCESS_TOKEN_DEV }}"
+          name="${{ fromJson(inputs.secrets).ACCESS_TOKEN }}"
+          echo "ACCESS_TOKEN=${name}" >> $GITHUB_ENV
           echo "::set-output name=name::$(echo $name)"
         fi
