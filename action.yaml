@@ -42,6 +42,7 @@ runs:
         
           gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_DEV }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
+          echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
           echo "::set-output name=gcp_project::$(echo $gcp_project)"
 
           gcp_region="${{ fromJson(inputs.secrets).GCP_REGION_DEV }}"
