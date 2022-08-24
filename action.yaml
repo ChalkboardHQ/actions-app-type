@@ -7,7 +7,28 @@ inputs:
 outputs:
   git_branch:
     description: 'app type output git_branch'
-    value: ${{ steps.app_env.outputs.git_branch }}
+    value: ${{ steps.app_env_common.outputs.git_branch }}
+  sharp_sports_api_token:
+    description: 'app type output sharp_sports_api_token'
+    value: ${{ steps.app_env_common.outputs.sharp_sports_api_token }}
+  sharp_sports_api_token_public:
+    description: 'app type output sharp_sports_api_token_public'
+    value: ${{ steps.app_env_common.outputs.sharp_sports_api_token_public }}
+  getambassador_token:
+    description: 'app type output getambassador_token'
+    value: ${{ steps.app_env_common.outputs.getambassador_token }}
+  getambassador_username:
+    description: 'app type output getambassador_username'
+    value: ${{ steps.app_env_common.outputs.getambassador_username }}
+  twilio_account_sid:
+    description: 'app type output twilio_account_sid'
+    value: ${{ steps.app_env_common.outputs.twilio_account_sid }}
+  twilio_auth_token:
+    description: 'app type output twilio_auth_token'
+    value: ${{ steps.app_env_common.outputs.twilio_auth_token }}
+  sentry_dsn:
+    description: 'app type output sentry_dsn'
+    value: ${{ steps.app_env_common.outputs.sentry_dsn }}
   gcp_project:
     description: 'app type output gcp_project'
     value: ${{ steps.app_env.outputs.gcp_project }}
@@ -22,7 +43,25 @@ outputs:
     value: ${{ steps.app_env.outputs.gcp_wip }}
   name:
     description: 'app type output name'
-    value: ${{ steps.app_env.outputs.name }}
+    value: ${{ steps.app_env_common.outputs.name }}
+  app_type:
+    description: 'app type output app_type'
+    value: ${{ steps.app_env_common.outputs.app_type }}
+  db_host_replica:
+    description: 'app type output db_host_replica'
+    value: ${{ steps.app_env_common.outputs.db_host_replica }}
+  db_host:
+    description: 'app type output db_host'
+    value: ${{ steps.app_env_common.outputs.db_host }}
+  db_username:
+    description: 'app type output db_username'
+    value: ${{ steps.app_env_common.outputs.db_username }}
+  db_password:
+    description: 'app type output db_password'
+    value: ${{ steps.app_env_common.outputs.db_password }}
+  db_database:
+    description: 'app type output db_database'
+    value: ${{ steps.app_env_common.outputs.db_database }}
 runs:
   using: "composite"
   steps:
@@ -31,14 +70,51 @@ runs:
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
 
+    - name: set common envs
+      id: app_env_common
+      shell: bash
+      run: |
+        git_branch="${{ steps.extract_branch.outputs.branch }}"
+        echo "GIT_BRANCH=${git_branch}" >> $GITHUB_ENV
+        echo "::set-output name=git_branch::$(echo $git_branch)"
+
+        name="${{ fromJson(inputs.secrets).NAME_DEV }}"
+        echo "NAME=${name}" >> $GITHUB_ENV
+        echo "::set-output name=name::$(echo $name)"
+        
+        sharp_sports_api_token="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN }}"
+        echo "SHARP_SPORTS_API_TOKEN=${sharp_sports_api_token}" >> $GITHUB_ENV
+        echo "::set-output name=sharp_sports_api_token::$(echo $sharp_sports_api_token)"
+        
+        sharp_sports_api_token_public="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN_PUBLIC }}"
+        echo "SHARP_SPORTS_API_TOKEN_PUBLIC=${sharp_sports_api_token_public}" >> $GITHUB_ENV
+        echo "::set-output name=sharp_sports_api_token_public::$(echo $sharp_sports_api_token_public)"
+        
+        getambassador_username="${{ fromJson(inputs.secrets).GETAMBASSADOR_USERNAME }}"
+        echo "GETAMBASSADOR_USERNAME=${getambassador_username}" >> $GITHUB_ENV
+        echo "::set-output name=getambassador_username::$(echo $getambassador_username)"
+        
+        getambassador_token="${{ fromJson(inputs.secrets).GETAMBASSADOR_TOKEN }}"
+        echo "GETAMBASSADOR_TOKEN=${getambassador_token}" >> $GITHUB_ENV
+        echo "::set-output name=getambassador_token::$(echo $getambassador_token)"
+
+        twilio_account_sid="${{ fromJson(inputs.secrets).TWILIO_ACCOUNT_SID }}"
+        echo "TWILIO_ACCOUNT_SID=${twilio_account_sid}" >> $GITHUB_ENV
+        echo "::set-output name=twilio_account_sid::$(echo $twilio_account_sid)"
+        
+        twilio_auth_token="${{ fromJson(inputs.secrets).TWILIO_AUTH_TOKEN }}"
+        echo "TWILIO_AUTH_TOKEN=${twilio_auth_token}" >> $GITHUB_ENV
+        echo "::set-output name=twilio_auth_token::$(echo $twilio_auth_token)"
+        
+        sentry_dsn="${{ fromJson(inputs.secrets).SENTRY_DSN }}"
+        echo "SENTRY_DSN=${sentry_dsn}" >> $GITHUB_ENV
+        echo "::set-output name=sentry_dsn::$(echo $sentry_dsn)"
+
     - name: check app type
       id: app_env
       shell: bash
       run: |
         if [[ "${{ steps.extract_branch.outputs.branch }}" == "alpha" ]]; then
-          git_branch="${{ steps.extract_branch.outputs.branch }}"
-          echo "GIT_BRANCH=${git_branch}" >> $GITHUB_ENV
-          echo "::set-output name=git_branch::$(echo $git_branch)"
         
           gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_DEV }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
@@ -56,8 +132,28 @@ runs:
           gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_DEV }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
           echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
+        
+          db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
+          echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
+          echo "::set-output name=db_host_replica::$(echo $db_host_replica)"
+        
+          db_host="${{ fromJson(inputs.secrets).DB_HOST_ALPHA }}"
+          echo "DB_HOST=${db_host}" >> $GITHUB_ENV
+          echo "::set-output name=db_host::$(echo $db_host)"
+        
+          db_username="${{ fromJson(inputs.secrets).DB_USERNAME_ALPHA }}"
+          echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
+          echo "::set-output name=db_username::$(echo $db_username)"
+        
+          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_ALPHA }}"
+          echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
+          echo "::set-output name=db_password::$(echo $db_password)"
+        
+          db_database="${{ fromJson(inputs.secrets).DB_DATABASE_ALPHA }}"
+          echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
+          echo "::set-output name=db_database::$(echo $db_database)"
 
-          name="${{ fromJson(inputs.secrets).NAME_DEV }}"
-          echo "NAME=${name}" >> $GITHUB_ENV
-          echo "::set-output name=name::$(echo $name)"
+          app_type="alpha"
+          echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
+          echo "::set-output name=app_type::$(echo $app_type)"
         fi
