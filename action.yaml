@@ -4,6 +4,9 @@ inputs:
   secrets:
     description: Input secrets
     required: false
+  branch:
+    description: Input Branch
+    required: false
 outputs:
   git_branch:
     description: 'app type output git_branch'
@@ -67,7 +70,13 @@ runs:
   steps:
     - name: Extract branch name
       shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      run: |
+        branch="${{ input.branch }}"
+        if [[ $branch == "" ]]; then
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        else 
+          echo "::set-output name=branch::$(echo $branch)"
+        fi
       id: extract_branch
 
     - name: set common envs
