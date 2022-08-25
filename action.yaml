@@ -71,7 +71,7 @@ runs:
     - name: Extract branch name
       shell: bash
       run: |
-        branch="${{ input.branch }}"
+        branch="${{ inputs.branch }}"
         if [[ $branch == "" ]]; then
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         else 
