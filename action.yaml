@@ -145,6 +145,13 @@ runs:
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
           echo "::set-output name=db_host_replica::$(echo $db_host_replica)"
+
+#        for proxy pg db connection
+#        set master external ip
+#        set proxy external ip to pg connection white list
+          db_host_ip="34.134.121.182"
+          echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
+#          echo "::set-output name=db_host_ip::$(echo $db_host_ip)"
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_ALPHA }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
