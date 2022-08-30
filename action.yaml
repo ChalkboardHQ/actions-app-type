@@ -65,6 +65,13 @@ outputs:
   db_database:
     description: 'app type output db_database'
     value: ${{ steps.app_env_common.outputs.db_database }}
+  systemNodePoolMachineType:
+    description: 'app type output systemNodePoolMachineType'
+    value: ${{ steps.app_env_common.outputs.systemNodePoolMachineType }}
+  memoryWorkerNodePoolMachineType:
+    description: 'app type output memoryWorkerNodePoolMachineType'
+    value: ${{ steps.app_env_common.outputs.memoryWorkerNodePoolMachineType }}
+
   db_host_ip:
     description: 'app type output db_host_ip'
     value: ${{ steps.app_env_common.outputs.db_host_ip }}
@@ -144,6 +151,14 @@ runs:
           gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_DEV }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
           echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
+        
+          systemNodePoolMachineType="e2-standard-4"
+          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
+          echo "::set-output name=systemNodePoolMachineType::$(echo $systemNodePoolMachineType)"
+
+          memoryWorkerNodePoolMachineType="e2-highmem-4"
+          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
+          echo "::set-output name=memoryWorkerNodePoolMachineType::$(echo $memoryWorkerNodePoolMachineType)"
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
