@@ -65,6 +65,9 @@ outputs:
   db_database:
     description: 'app type output db_database'
     value: ${{ steps.app_env_common.outputs.db_database }}
+  db_host_ip:
+    description: 'app type output db_host_ip'
+    value: ${{ steps.app_env_common.outputs.db_host_ip }}
 runs:
   using: "composite"
   steps:
@@ -151,7 +154,7 @@ runs:
 #        set proxy external ip to pg connection white list
           db_host_ip="34.134.121.182"
           echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
-#          echo "::set-output name=db_host_ip::$(echo $db_host_ip)"
+          echo "::set-output name=db_host_ip::$(echo $db_host_ip)"
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_ALPHA }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
