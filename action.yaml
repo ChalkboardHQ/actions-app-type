@@ -11,6 +11,9 @@ outputs:
   git_branch:
     description: 'app type output git_branch'
     value: ${{ steps.app_env_common.outputs.git_branch }}
+  slack_web_hook_address:
+    description: 'app type output slack_web_hook_address'
+    value: ${{ steps.app_env_common.outputs.slack_web_hook_address }}
   sharp_sports_api_token:
     description: 'app type output sharp_sports_api_token'
     value: ${{ steps.app_env_common.outputs.sharp_sports_api_token }}
@@ -100,6 +103,10 @@ runs:
         name="${{ fromJson(inputs.secrets).NAME_DEV }}"
         echo "NAME=${name}" >> $GITHUB_ENV
         echo "::set-output name=name::$(echo $name)"
+        
+        slack_web_hook_address="${{ fromJson(inputs.secrets).SLACK_WEB_HOOK_ADDRESS }}"
+        echo "SLACK_WEB_HOOK_ADDRESS=${slack_web_hook_address}" >> $GITHUB_ENV
+        echo "::set-output name=slack_web_hook_address::$(echo $slack_web_hook_address)"
         
         sharp_sports_api_token="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN }}"
         echo "SHARP_SPORTS_API_TOKEN=${sharp_sports_api_token}" >> $GITHUB_ENV
