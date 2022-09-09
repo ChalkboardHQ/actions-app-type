@@ -100,9 +100,13 @@ runs:
         echo "GIT_BRANCH=${git_branch}" >> $GITHUB_ENV
         echo "::set-output name=git_branch::$(echo $git_branch)"
 
-        name="${{ fromJson(inputs.secrets).NAME_DEV }}"
+        name="${{ fromJson(inputs.secrets).NAME }}"
         echo "NAME=${name}" >> $GITHUB_ENV
         echo "::set-output name=name::$(echo $name)"
+        
+        gcp_region="${{ fromJson(inputs.secrets).GCP_REGION }}"
+        echo "GCP_REGION=${gcp_region}" >> $GITHUB_ENV
+        echo "::set-output name=gcp_region::$(echo $gcp_region)"
         
         slack_web_hook_address="${{ fromJson(inputs.secrets).SLACK_WEB_HOOK_ADDRESS }}"
         echo "SLACK_WEB_HOOK_ADDRESS=${slack_web_hook_address}" >> $GITHUB_ENV
@@ -146,10 +150,6 @@ runs:
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
           echo "::set-output name=gcp_project::$(echo $gcp_project)"
-
-          gcp_region="${{ fromJson(inputs.secrets).GCP_REGION_DEV }}"
-          echo "GCP_REGION=${gcp_region}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_region::$(echo $gcp_region)"
 
           gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_DEV }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
