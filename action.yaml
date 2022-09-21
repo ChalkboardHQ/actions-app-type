@@ -248,3 +248,55 @@ runs:
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "::set-output name=app_type::$(echo $app_type)"
         fi
+        if [[ "${{ steps.extract_branch.outputs.branch }}" == "master" ]]; then
+        
+          gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_PROD }}"
+          echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
+          echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
+          echo "::set-output name=gcp_project::$(echo $gcp_project)"
+
+          gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_PROD }}"
+          echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
+          echo "::set-output name=gcp_sa::$(echo $gcp_sa)"
+
+          gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_PROD }}"
+          echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
+          echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
+        
+          systemNodePoolMachineType="e2-standard-4"
+          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
+          echo "::set-output name=systemNodePoolMachineType::$(echo $systemNodePoolMachineType)"
+
+          memoryWorkerNodePoolMachineType="e2-highmem-4"
+          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
+          echo "::set-output name=memoryWorkerNodePoolMachineType::$(echo $memoryWorkerNodePoolMachineType)"
+        
+          db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
+          echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
+          echo "::set-output name=db_host_replica::$(echo $db_host_replica)"
+
+
+          db_host_ip="35.192.49.47"
+          echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
+          echo "::set-output name=db_host_ip::$(echo $db_host_ip)"
+        
+          db_host="${{ fromJson(inputs.secrets).DB_HOST_PROD }}"
+          echo "DB_HOST=${db_host}" >> $GITHUB_ENV
+          echo "::set-output name=db_host::$(echo $db_host)"
+        
+          db_username="${{ fromJson(inputs.secrets).DB_USERNAME_PROD }}"
+          echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
+          echo "::set-output name=db_username::$(echo $db_username)"
+        
+          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_PROD }}"
+          echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
+          echo "::set-output name=db_password::$(echo $db_password)"
+        
+          db_database="${{ fromJson(inputs.secrets).DB_DATABASE_PROD }}"
+          echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
+          echo "::set-output name=db_database::$(echo $db_database)"
+
+          app_type="prod"
+          echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
+          echo "::set-output name=app_type::$(echo $app_type)"
+        fi
