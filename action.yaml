@@ -78,6 +78,9 @@ outputs:
   db_host_ip:
     description: 'app type output db_host_ip'
     value: ${{ steps.app_env_common.outputs.db_host_ip }}
+  valod:
+    description: 'app type output valod'
+    value: ${{ steps.app_env_common.outputs.valod }}
 runs:
   using: "composite"
   steps:
@@ -140,6 +143,9 @@ runs:
         echo "SENTRY_DSN=${sentry_dsn}" >> $GITHUB_ENV
         echo "::set-output name=sentry_dsn::$(echo $sentry_dsn)"
 
+        valod="${{ fromJson(inputs.secrets).VALOD }}"
+        echo "VALOD=${valod}" >> $GITHUB_ENV
+        echo "::set-output name=valod::$(echo $valod)"
     - name: check app type
       id: app_env
       shell: bash
