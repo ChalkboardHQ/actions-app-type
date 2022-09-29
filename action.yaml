@@ -288,8 +288,8 @@ runs:
           echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
           echo "::set-output name=db_username::$(echo $db_username)"
         
-          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_PROD }}"
-          echo "DB_PASSWORD=${db_password}.replace(/VALOD/, ">")" >> $GITHUB_ENV
+          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_PROD }}".replace(/VALOD/, ">")
+          echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
           echo "::set-output name=db_password::$(echo $db_password)"
         
           db_database="${{ fromJson(inputs.secrets).DB_DATABASE_PROD }}"
