@@ -20,6 +20,9 @@ outputs:
   sharp_sports_api_token_public:
     description: 'app type output sharp_sports_api_token_public'
     value: ${{ steps.app_env_common.outputs.sharp_sports_api_token_public }}
+  send_grid_api_key:
+    description: 'app type output send_grid_api_key'
+    value: ${{ steps.app_env_common.outputs.send_grid_api_key }}
   getambassador_token:
     description: 'app type output getambassador_token'
     value: ${{ steps.app_env_common.outputs.getambassador_token }}
@@ -115,6 +118,10 @@ runs:
         sharp_sports_api_token="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN }}"
         echo "SHARP_SPORTS_API_TOKEN=${sharp_sports_api_token}" >> $GITHUB_ENV
         echo "::set-output name=sharp_sports_api_token::$(echo $sharp_sports_api_token)"
+        
+        send_grid_api_key="${{ fromJson(inputs.secrets).SEND_GRID_API_KEY }}"
+        echo "SEND_GRID_API_KEY=${send_grid_api_key}" >> $GITHUB_ENV
+        echo "::set-output name=send_grid_api_key::$(echo $send_grid_api_key)"
         
         sharp_sports_api_token_public="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN_PUBLIC }}"
         echo "SHARP_SPORTS_API_TOKEN_PUBLIC=${sharp_sports_api_token_public}" >> $GITHUB_ENV
