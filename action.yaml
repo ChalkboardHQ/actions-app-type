@@ -218,7 +218,7 @@ runs:
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
           echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
         
-          systemNodePoolMachineType="e2-standard-4"
+          systemNodePoolMachineType="e2-highcpu-4"
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
           echo "::set-output name=systemNodePoolMachineType::$(echo $systemNodePoolMachineType)"
 
