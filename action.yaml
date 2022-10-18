@@ -77,6 +77,12 @@ outputs:
   memoryWorkerNodePoolMachineType:
     description: 'app type output memoryWorkerNodePoolMachineType'
     value: ${{ steps.app_env_common.outputs.memoryWorkerNodePoolMachineType }}
+  hive_text_api_token:
+    description: 'app type outputhive_text_api_token'
+    value: ${{ steps.app_env_common.outputs.hive_text_api_token }}
+  hive_image_api_token:
+    description: 'app type output hive_image_api_token'
+    value: ${{ steps.app_env_common.outputs.hive_image_api_token }}
 
   db_host_ip:
     description: 'app type output db_host_ip'
@@ -122,6 +128,14 @@ runs:
         send_grid_api_key="${{ fromJson(inputs.secrets).SEND_GRID_API_KEY }}"
         echo "SEND_GRID_API_KEY=${send_grid_api_key}" >> $GITHUB_ENV
         echo "::set-output name=send_grid_api_key::$(echo $send_grid_api_key)"
+
+        hive_text_api_token="${{ fromJson(inputs.secrets).HIVE_TEXT_API_TOKEN }}"
+        echo "HIVE_TEXT_API_TOKEN=${hive_text_api_token}" >> $GITHUB_ENV
+        echo "::set-output name=hive_text_api_token::$(echo $hive_text_api_token)"
+
+        hive_image_api_token="${{ fromJson(inputs.secrets).HIVE_IMAGE_API_TOKEN }}"
+        echo "HIVE_IMAGE_API_TOKEN=${hive_image_api_token}" >> $GITHUB_ENV
+        echo "::set-output name=hive_image_api_token::$(echo $hive_image_api_token)"
         
         sharp_sports_api_token_public="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN_PUBLIC }}"
         echo "SHARP_SPORTS_API_TOKEN_PUBLIC=${sharp_sports_api_token_public}" >> $GITHUB_ENV
