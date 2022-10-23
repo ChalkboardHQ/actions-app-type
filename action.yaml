@@ -95,7 +95,7 @@ runs:
       run: |
         branch="${{ inputs.branch }}"
         if [[ $branch == "" ]]; then
-          echo "branch=$(echo ${GITHUB_REF#refs/heads/})"  >> $GITHUB_OUTPUT
+          echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >> $GITHUB_OUTPUT
         else 
           echo "branch=$(echo $branch)" >> $GITHUB_OUTPUT
         fi
