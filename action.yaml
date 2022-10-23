@@ -97,7 +97,7 @@ runs:
         if [[ $branch == "" ]]; then
           echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         else 
-          echo "::set-output name=branch::$(echo $branch)"
+          echo "branch=$(echo $branch)" >> $GITHUB_OUTPUT
         fi
       id: extract_branch
 
@@ -107,59 +107,59 @@ runs:
       run: |
         git_branch="${{ steps.extract_branch.outputs.branch }}"
         echo "GIT_BRANCH=${git_branch}" >> $GITHUB_ENV
-        echo "::set-output name=git_branch::$(echo $git_branch)"
+        echo "git_branch=$(echo $git_branch)" >> $GITHUB_OUTPUT
 
         name="${{ fromJson(inputs.secrets).NAME }}"
         echo "NAME=${name}" >> $GITHUB_ENV
-        echo "::set-output name=name::$(echo $name)"
+        echo "name=$(echo $name)" >> $GITHUB_OUTPUT
         
         gcp_region="${{ fromJson(inputs.secrets).GCP_REGION }}"
         echo "GCP_REGION=${gcp_region}" >> $GITHUB_ENV
-        echo "::set-output name=gcp_region::$(echo $gcp_region)"
+        echo "gcp_region=$(echo $gcp_region)" >> $GITHUB_OUTPUT
         
         slack_web_hook_address="${{ fromJson(inputs.secrets).SLACK_WEB_HOOK_ADDRESS }}"
         echo "SLACK_WEB_HOOK_ADDRESS=${slack_web_hook_address}" >> $GITHUB_ENV
-        echo "::set-output name=slack_web_hook_address::$(echo $slack_web_hook_address)"
+        echo "slack_web_hook_address=$(echo $slack_web_hook_address)" >> $GITHUB_OUTPUT
         
         sharp_sports_api_token="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN }}"
         echo "SHARP_SPORTS_API_TOKEN=${sharp_sports_api_token}" >> $GITHUB_ENV
-        echo "::set-output name=sharp_sports_api_token::$(echo $sharp_sports_api_token)"
+        echo "sharp_sports_api_token=$(echo $sharp_sports_api_token)" >> $GITHUB_OUTPUT
         
         send_grid_api_key="${{ fromJson(inputs.secrets).SEND_GRID_API_KEY }}"
         echo "SEND_GRID_API_KEY=${send_grid_api_key}" >> $GITHUB_ENV
-        echo "::set-output name=send_grid_api_key::$(echo $send_grid_api_key)"
+        echo "send_grid_api_key=$(echo $send_grid_api_key)" >> $GITHUB_OUTPUT
 
         hive_text_api_token="${{ fromJson(inputs.secrets).HIVE_TEXT_API_TOKEN }}"
         echo "HIVE_TEXT_API_TOKEN=${hive_text_api_token}" >> $GITHUB_ENV
-        echo "::set-output name=hive_text_api_token::$(echo $hive_text_api_token)"
+        echo "hive_text_api_token=$(echo $hive_text_api_token)" >> $GITHUB_OUTPUT
 
         hive_image_api_token="${{ fromJson(inputs.secrets).HIVE_IMAGE_API_TOKEN }}"
         echo "HIVE_IMAGE_API_TOKEN=${hive_image_api_token}" >> $GITHUB_ENV
-        echo "::set-output name=hive_image_api_token::$(echo $hive_image_api_token)"
+        echo "hive_image_api_token=$(echo $hive_image_api_token)" >> $GITHUB_OUTPUT
         
         sharp_sports_api_token_public="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN_PUBLIC }}"
         echo "SHARP_SPORTS_API_TOKEN_PUBLIC=${sharp_sports_api_token_public}" >> $GITHUB_ENV
-        echo "::set-output name=sharp_sports_api_token_public::$(echo $sharp_sports_api_token_public)"
+        echo "sharp_sports_api_token_public=$(echo $sharp_sports_api_token_public)" >> $GITHUB_OUTPUT
         
         getambassador_username="${{ fromJson(inputs.secrets).GETAMBASSADOR_USERNAME }}"
         echo "GETAMBASSADOR_USERNAME=${getambassador_username}" >> $GITHUB_ENV
-        echo "::set-output name=getambassador_username::$(echo $getambassador_username)"
+        echo "getambassador_username=$(echo $getambassador_username)" >> $GITHUB_OUTPUT
         
         getambassador_token="${{ fromJson(inputs.secrets).GETAMBASSADOR_TOKEN }}"
         echo "GETAMBASSADOR_TOKEN=${getambassador_token}" >> $GITHUB_ENV
-        echo "::set-output name=getambassador_token::$(echo $getambassador_token)"
+        echo "getambassador_token=$(echo $getambassador_token)" >> $GITHUB_OUTPUT
 
         twilio_account_sid="${{ fromJson(inputs.secrets).TWILIO_ACCOUNT_SID }}"
         echo "TWILIO_ACCOUNT_SID=${twilio_account_sid}" >> $GITHUB_ENV
-        echo "::set-output name=twilio_account_sid::$(echo $twilio_account_sid)"
+        echo "twilio_account_sid=$(echo $twilio_account_sid)" >> $GITHUB_OUTPUT
         
         twilio_auth_token="${{ fromJson(inputs.secrets).TWILIO_AUTH_TOKEN }}"
         echo "TWILIO_AUTH_TOKEN=${twilio_auth_token}" >> $GITHUB_ENV
-        echo "::set-output name=twilio_auth_token::$(echo $twilio_auth_token)"
+        echo "twilio_auth_token=$(echo $twilio_auth_token)" >> $GITHUB_OUTPUT
         
         sentry_dsn="${{ fromJson(inputs.secrets).SENTRY_DSN }}"
         echo "SENTRY_DSN=${sentry_dsn}" >> $GITHUB_ENV
-        echo "::set-output name=sentry_dsn::$(echo $sentry_dsn)"
+        echo "sentry_dsn=$(echo $sentry_dsn)" >> $GITHUB_OUTPUT
 
     - name: check app type
       id: app_env
@@ -170,154 +170,154 @@ runs:
           gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_DEV }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_project::$(echo $gcp_project)"
+          echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
 
           gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_DEV }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_sa::$(echo $gcp_sa)"
+          echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
 
           gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_DEV }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
+          echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
         
           systemNodePoolMachineType="e2-highcpu-4"
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
-          echo "::set-output name=systemNodePoolMachineType::$(echo $systemNodePoolMachineType)"
+          echo "systemNodePoolMachineType=$(echo $systemNodePoolMachineType)" >> $GITHUB_OUTPUT
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
-          echo "::set-output name=memoryWorkerNodePoolMachineType::$(echo $memoryWorkerNodePoolMachineType)"
+          echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
-          echo "::set-output name=db_host_replica::$(echo $db_host_replica)"
+          echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
 
 
           db_host_ip="34.134.121.182"
           echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
-          echo "::set-output name=db_host_ip::$(echo $db_host_ip)"
+          echo "db_host_ip=$(echo $db_host_ip)" >> $GITHUB_OUTPUT
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_ALPHA }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
-          echo "::set-output name=db_host::$(echo $db_host)"
+          echo "db_host=$(echo $db_host)" >> $GITHUB_OUTPUT
         
           db_username="${{ fromJson(inputs.secrets).DB_USERNAME_ALPHA }}"
           echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
-          echo "::set-output name=db_username::$(echo $db_username)"
+          echo "db_username=$(echo $db_username)" >> $GITHUB_OUTPUT
         
           db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_ALPHA }}"
           echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
-          echo "::set-output name=db_password::$(echo $db_password)"
+          echo "db_password=$(echo $db_password)" >> $GITHUB_OUTPUT
         
           db_database="${{ fromJson(inputs.secrets).DB_DATABASE_ALPHA }}"
           echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
-          echo "::set-output name=db_database::$(echo $db_database)"
+          echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
 
           app_type="alpha"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
-          echo "::set-output name=app_type::$(echo $app_type)"
+          echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
         fi
         if [[ "${{ steps.extract_branch.outputs.branch }}" == "beta" ]]; then
         
           gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_BETA }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_project::$(echo $gcp_project)"
+          echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
 
           gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_BETA }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_sa::$(echo $gcp_sa)"
+          echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
 
           gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_BETA }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
+          echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
         
           systemNodePoolMachineType="e2-highcpu-4"
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
-          echo "::set-output name=systemNodePoolMachineType::$(echo $systemNodePoolMachineType)"
+          echo "systemNodePoolMachineType=$(echo $systemNodePoolMachineType)" >> $GITHUB_OUTPUT
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
-          echo "::set-output name=memoryWorkerNodePoolMachineType::$(echo $memoryWorkerNodePoolMachineType)"
+          echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_BETA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
-          echo "::set-output name=db_host_replica::$(echo $db_host_replica)"
+          echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
 
 
           db_host_ip="34.133.120.39"
           echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
-          echo "::set-output name=db_host_ip::$(echo $db_host_ip)"
+          echo "db_host_ip=$(echo $db_host_ip)" >> $GITHUB_OUTPUT
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_BETA }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
-          echo "::set-output name=db_host::$(echo $db_host)"
+          echo "db_host=$(echo $db_host)" >> $GITHUB_OUTPUT
         
           db_username="${{ fromJson(inputs.secrets).DB_USERNAME_BETA }}"
           echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
-          echo "::set-output name=db_username::$(echo $db_username)"
+          echo "db_username=$(echo $db_username)" >> $GITHUB_OUTPUT
         
           db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_BETA }}"
           echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
-          echo "::set-output name=db_password::$(echo $db_password)"
+          echo "db_password=$(echo $db_password)" >> $GITHUB_OUTPUT
         
           db_database="${{ fromJson(inputs.secrets).DB_DATABASE_BETA }}"
           echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
-          echo "::set-output name=db_database::$(echo $db_database)"
+          echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
 
           app_type="beta"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
-          echo "::set-output name=app_type::$(echo $app_type)"
+          echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
         fi
         if [[ "${{ steps.extract_branch.outputs.branch }}" == "master" ]]; then
         
           gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_PROD }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_project::$(echo $gcp_project)"
+          echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
 
           gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_PROD }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_sa::$(echo $gcp_sa)"
+          echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
 
           gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_PROD }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
-          echo "::set-output name=gcp_wip::$(echo $gcp_wip)"
+          echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
         
           systemNodePoolMachineType="e2-highcpu-8"
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
-          echo "::set-output name=systemNodePoolMachineType::$(echo $systemNodePoolMachineType)"
+          echo "systemNodePoolMachineType=$(echo $systemNodePoolMachineType)" >> $GITHUB_OUTPUT
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
-          echo "::set-output name=memoryWorkerNodePoolMachineType::$(echo $memoryWorkerNodePoolMachineType)"
+          echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
-          echo "::set-output name=db_host_replica::$(echo $db_host_replica)"
+          echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
 
 
           db_host_ip="35.192.49.47"
           echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
-          echo "::set-output name=db_host_ip::$(echo $db_host_ip)"
+          echo "db_host_ip=$(echo $db_host_ip)" >> $GITHUB_OUTPUT
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_PROD }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
-          echo "::set-output name=db_host::$(echo $db_host)"
+          echo "db_host=$(echo $db_host)" >> $GITHUB_OUTPUT
         
           db_username="${{ fromJson(inputs.secrets).DB_USERNAME_PROD }}"
           echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
-          echo "::set-output name=db_username::$(echo $db_username)"
+          echo "db_username=$(echo $db_username)" >> $GITHUB_OUTPUT
         
           db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_PROD }}"
           echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
-          echo "::set-output name=db_password::$(echo $db_password)"
+          echo "db_password=$(echo $db_password)" >> $GITHUB_OUTPUT
         
           db_database="${{ fromJson(inputs.secrets).DB_DATABASE_PROD }}"
           echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
-          echo "::set-output name=db_database::$(echo $db_database)"
+          echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
 
           app_type="prod"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
-          echo "::set-output name=app_type::$(echo $app_type)"
+          echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
         fi
