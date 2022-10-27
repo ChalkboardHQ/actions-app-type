@@ -84,9 +84,6 @@ outputs:
     description: 'app type output hive_image_api_token'
     value: ${{ steps.app_env_common.outputs.hive_image_api_token }}
 
-  db_host_ip:
-    description: 'app type output db_host_ip'
-    value: ${{ steps.app_env_common.outputs.db_host_ip }}
 runs:
   using: "composite"
   steps:
@@ -188,14 +185,16 @@ runs:
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
           echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
         
+          applicationRedisNodePoolMachineType="n1-standard-1"
+          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
+
+          applicationRabbitmqNodePoolMachineType="n1-standard-1"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
+        
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
           echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
 
-
-          db_host_ip="34.134.121.182"
-          echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
-          echo "db_host_ip=$(echo $db_host_ip)" >> $GITHUB_OUTPUT
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_ALPHA }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
@@ -235,6 +234,12 @@ runs:
           systemNodePoolMachineType="e2-highcpu-4"
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
           echo "systemNodePoolMachineType=$(echo $systemNodePoolMachineType)" >> $GITHUB_OUTPUT
+        
+          applicationRedisNodePoolMachineType="n1-standard-1"
+          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
+
+          applicationRabbitmqNodePoolMachineType="n1-standard-1"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
@@ -243,11 +248,6 @@ runs:
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_BETA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
           echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
-
-
-          db_host_ip="34.133.120.39"
-          echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
-          echo "db_host_ip=$(echo $db_host_ip)" >> $GITHUB_OUTPUT
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_BETA }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
@@ -292,14 +292,15 @@ runs:
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
           echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
         
+          applicationRedisNodePoolMachineType="e2-highmem-4"
+          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
+
+          applicationRabbitmqNodePoolMachineType="n1-standard-1"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
+        
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
           echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
-
-
-          db_host_ip="35.192.49.47"
-          echo "PG_IP=${db_host_ip}" >> $GITHUB_ENV
-          echo "db_host_ip=$(echo $db_host_ip)" >> $GITHUB_OUTPUT
         
           db_host="${{ fromJson(inputs.secrets).DB_HOST_PROD }}"
           echo "DB_HOST=${db_host}" >> $GITHUB_ENV
