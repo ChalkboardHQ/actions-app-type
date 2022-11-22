@@ -185,11 +185,14 @@ runs:
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
           echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
         
-          applicationRedisNodePoolMachineType="n1-standard-1"
+          applicationRedisNodePoolMachineType="e2-medium"
           echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
 
-          applicationRabbitmqNodePoolMachineType="n1-standard-1"
+          applicationRabbitmqNodePoolMachineType="e2-small"
           echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
+        
+          systemIngressNodePoolMachineType="e2-micro"
+          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
@@ -235,11 +238,14 @@ runs:
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
           echo "systemNodePoolMachineType=$(echo $systemNodePoolMachineType)" >> $GITHUB_OUTPUT
         
-          applicationRedisNodePoolMachineType="n1-standard-1"
+          applicationRedisNodePoolMachineType="e2-medium"
           echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
 
-          applicationRabbitmqNodePoolMachineType="n1-standard-1"
+          applicationRabbitmqNodePoolMachineType="e2-small"
           echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
+        
+          systemIngressNodePoolMachineType="e2-micro"
+          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
@@ -297,6 +303,9 @@ runs:
 
           applicationRabbitmqNodePoolMachineType="n1-standard-1"
           echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
+        
+          systemIngressNodePoolMachineType="e2-small"
+          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
