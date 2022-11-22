@@ -191,7 +191,7 @@ runs:
           applicationRabbitmqNodePoolMachineType="e2-small"
           echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
         
-          systemIngressNodePoolMachineType="e2-micro"
+          systemIngressNodePoolMachineType="e2-small"
           echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
@@ -244,7 +244,7 @@ runs:
           applicationRabbitmqNodePoolMachineType="e2-small"
           echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
         
-          systemIngressNodePoolMachineType="e2-micro"
+          systemIngressNodePoolMachineType="e2-small"
           echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
