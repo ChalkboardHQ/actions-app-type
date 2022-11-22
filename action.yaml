@@ -185,7 +185,7 @@ runs:
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
           echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
         
-          applicationRedisNodePoolMachineType="e2-medium"
+          applicationRedisNodePoolMachineType="n1-standard-2"
           echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
 
           applicationRabbitmqNodePoolMachineType="e2-small"
@@ -238,7 +238,7 @@ runs:
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
           echo "systemNodePoolMachineType=$(echo $systemNodePoolMachineType)" >> $GITHUB_OUTPUT
         
-          applicationRedisNodePoolMachineType="e2-medium"
+          applicationRedisNodePoolMachineType="n1-standard-2"
           echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
 
           applicationRabbitmqNodePoolMachineType="e2-small"
