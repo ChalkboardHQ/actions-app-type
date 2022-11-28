@@ -307,7 +307,7 @@ runs:
           applicationRedisNodePoolMachineType="e2-highmem-4"
           echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
 
-          applicationElasticSearchNodePoolMachineType="e2-standard-2"
+          applicationElasticSearchNodePoolMachineType="e2-standard-4"
           echo "APPLICATION_ELASTICSEARCH_NODE_POOL_MACHINE_TYPE=${applicationElasticSearchNodePoolMachineType}" >> $GITHUB_ENV
         
           applicationRabbitmqNodePoolMachineType="n1-standard-1"
