@@ -199,6 +199,12 @@ runs:
         
           poolSpotType=true
           echo "POOL_SPOT_TYPE=${poolSpotType}" >> $GITHUB_ENV
+
+          poolDiscType="pd-standard"
+          echo "POOL_DISC_TYPE=${poolDiscType}" >> $GITHUB_ENV
+        
+          poolDiscSize=25
+          echo "POOL_DISC_SIZE=${poolDiscSize}" >> $GITHUB_ENV
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
@@ -258,6 +264,12 @@ runs:
         
           poolSpotType=true
           echo "POOL_SPOT_TYPE=${poolSpotType}" >> $GITHUB_ENV
+        
+          poolDiscType="pd-standard"
+          echo "POOL_DISC_TYPE=${poolDiscType}" >> $GITHUB_ENV
+        
+          poolDiscSize=25
+          echo "POOL_DISC_SIZE=${poolDiscSize}" >> $GITHUB_ENV
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
@@ -324,6 +336,12 @@ runs:
         
           poolSpotType=false
           echo "POOL_SPOT_TYPE=${poolSpotType}" >> $GITHUB_ENV
+        
+          poolDiscType="pd-ssd"
+          echo "POOL_DISC_TYPE=${poolDiscType}" >> $GITHUB_ENV
+        
+          poolDiscSize=100
+          echo "POOL_DISC_SIZE=${poolDiscSize}" >> $GITHUB_ENV
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
