@@ -197,6 +197,9 @@ runs:
           systemIngressNodePoolMachineType="e2-small"
           echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
         
+          poolSpotType=true
+          echo "POOL_SPOT_TYPE=${poolSpotType}" >> $GITHUB_ENV
+        
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
           echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
@@ -252,6 +255,9 @@ runs:
         
           systemIngressNodePoolMachineType="e2-small"
           echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
+        
+          poolSpotType=true
+          echo "POOL_SPOT_TYPE=${poolSpotType}" >> $GITHUB_ENV
 
           memoryWorkerNodePoolMachineType="e2-highmem-4"
           echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
@@ -315,6 +321,9 @@ runs:
         
           systemIngressNodePoolMachineType="e2-small"
           echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
+        
+          poolSpotType=false
+          echo "POOL_SPOT_TYPE=${poolSpotType}" >> $GITHUB_ENV
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
