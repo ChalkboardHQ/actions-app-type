@@ -164,6 +164,60 @@ runs:
       run: |
         if [[ "${{ steps.extract_branch.outputs.branch }}" == "alpha" ]]; then
         
+          system_node_pool_machine_type="e2-highcpu-4"
+          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${system_node_pool_machine_type}" >> $GITHUB_ENV
+          system_node_pool_disc_size=25
+          echo "SYSTEM_NODE_POOL_DISC_SIZE=${system_node_pool_disc_size}" >> $GITHUB_ENV
+          system_node_pool_disc_type="pd-standard"
+          echo "SYSTEM_NODE_POOL_DISC_TYPE=${system_node_pool_disc_type}" >> $GITHUB_ENV
+          system_node_pool_spot_type=true
+          echo "SYSTEM_NODE_POOL_SPOT_TYPE=${system_node_pool_spot_type}" >> $GITHUB_ENV
+        
+          application_redis_node_pool_machine_type="n1-standard-2"
+          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${application_redis_node_pool_machine_type}" >> $GITHUB_ENV
+          application_redis_node_pool_disc_size=25
+          echo "APPLICATION_REDIS_NODE_POOL_DISC_SIZE=${application_redis_node_pool_disc_size}" >> $GITHUB_ENV
+          application_redis_node_pool_disc_type="pd-standard"
+          echo "APPLICATION_REDIS_NODE_POOL_DISC_TYPE=${application_redis_node_pool_disc_type}" >> $GITHUB_ENV
+          application_redis_node_pool_spot_type=true
+          echo "APPLICATION_REDIS_NODE_POOL_SPOT_TYPE=${application_redis_node_pool_spot_type}" >> $GITHUB_ENV
+        
+          application_elastic_search_node_pool_machine_type="e2-standard-2"
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_MACHINE_TYPE=${application_elastic_search_node_pool_machine_type}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_disc_size=25
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_SIZE=${application_elastic_search_node_pool_disc_size}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_disc_type="pd-standard"
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_TYPE=${application_elastic_search_node_pool_disc_type}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_spot_type=true
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_SPOT_TYPE=${application_elastic_search_node_pool_spot_type}" >> $GITHUB_ENV
+        
+          application_rabbitmq_node_pool_machine_type="e2-small"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${application_rabbitmq_node_pool_machine_type}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_disc_size=25
+          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_SIZE=${application_rabbitmq_node_pool_disc_size}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_disc_type="pd-standard"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_TYPE=${application_rabbitmq_node_pool_disc_type}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_spot_type=true
+          echo "APPLICATION_RABBITMQ_NODE_POOL_SPOT_TYPE=${application_rabbitmq_node_pool_spot_type}" >> $GITHUB_ENV
+        
+          system_ingress_node_pool_machine_type="e2-small"
+          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${system_ingress_node_pool_machine_type}" >> $GITHUB_ENV
+          system_ingress_node_pool_disc_size=25
+          echo "SYSTEM_INGRESS_NODE_POOL_DISC_SIZE=${system_ingress_node_pool_disc_size}" >> $GITHUB_ENV
+          system_ingress_node_pool_disc_type="pd-standard"
+          echo "SYSTEM_INGRESS_NODE_POOL_DISC_TYPE=${system_ingress_node_pool_disc_type}" >> $GITHUB_ENV
+          system_ingress_node_pool_spot_type=true
+          echo "SYSTEM_INGRESS_NODE_POOL_SPOT_TYPE=${system_ingress_node_pool_spot_type}" >> $GITHUB_ENV
+        
+          memory_worker_node_pool_machine_type="e2-highmem-4"
+          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memory_worker_node_pool_machine_type}" >> $GITHUB_ENV
+          memory_worker_node_pool_disc_size=25
+          echo "MEMORY_WORKER_NODE_POOL_DISC_SIZE=${memory_worker_node_pool_disc_size}" >> $GITHUB_ENV
+          memory_worker_node_pool_disc_type="pd-standard"
+          echo "MEMORY_WORKER_NODE_POOL_DISC_TYPE=${memory_worker_node_pool_disc_type}" >> $GITHUB_ENV
+          memory_worker_node_pool_spot_type=true
+          echo "MEMORY_WORKER_NODE_POOL_SPOT_TYPE=${memory_worker_node_pool_spot_type}" >> $GITHUB_ENV
+        
           gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_DEV }}"
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
@@ -176,35 +230,6 @@ runs:
           gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_DEV }}"
           echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
           echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
-        
-          systemNodePoolMachineType="e2-highcpu-4"
-          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${systemNodePoolMachineType}" >> $GITHUB_ENV
-          echo "systemNodePoolMachineType=$(echo $systemNodePoolMachineType)" >> $GITHUB_OUTPUT
-
-          memoryWorkerNodePoolMachineType="e2-highmem-4"
-          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memoryWorkerNodePoolMachineType}" >> $GITHUB_ENV
-          echo "memoryWorkerNodePoolMachineType=$(echo $memoryWorkerNodePoolMachineType)" >> $GITHUB_OUTPUT
-        
-          applicationRedisNodePoolMachineType="n1-standard-2"
-          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${applicationRedisNodePoolMachineType}" >> $GITHUB_ENV
-        
-          applicationElasticSearchNodePoolMachineType="e2-standard-2"
-          echo "APPLICATION_ELASTICSEARCH_NODE_POOL_MACHINE_TYPE=${applicationElasticSearchNodePoolMachineType}" >> $GITHUB_ENV
-
-          applicationRabbitmqNodePoolMachineType="e2-small"
-          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${applicationRabbitmqNodePoolMachineType}" >> $GITHUB_ENV
-        
-          systemIngressNodePoolMachineType="e2-small"
-          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${systemIngressNodePoolMachineType}" >> $GITHUB_ENV
-        
-          poolSpotType=true
-          echo "POOL_SPOT_TYPE=${poolSpotType}" >> $GITHUB_ENV
-
-          poolDiscType="pd-standard"
-          echo "POOL_DISC_TYPE=${poolDiscType}" >> $GITHUB_ENV
-        
-          poolDiscSize=25
-          echo "POOL_DISC_SIZE=${poolDiscSize}" >> $GITHUB_ENV
         
           db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_ALPHA }}"
           echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
