@@ -134,6 +134,9 @@ runs:
         echo "HIVE_IMAGE_API_TOKEN=${hive_image_api_token}" >> $GITHUB_ENV
         echo "hive_image_api_token=$(echo $hive_image_api_token)" >> $GITHUB_OUTPUT
         
+        new_relic_license_key="${{ fromJson(inputs.secrets).NEW_RELIC_LICENSE_KEY }}"
+        echo "NEW_RELIC_LICENSE_KEY=${new_relic_license_key}" >> $GITHUB_ENV
+        
         sharp_sports_api_token_public="${{ fromJson(inputs.secrets).SHARP_SPORTS_API_TOKEN_PUBLIC }}"
         echo "SHARP_SPORTS_API_TOKEN_PUBLIC=${sharp_sports_api_token_public}" >> $GITHUB_ENV
         echo "sharp_sports_api_token_public=$(echo $sharp_sports_api_token_public)" >> $GITHUB_OUTPUT
