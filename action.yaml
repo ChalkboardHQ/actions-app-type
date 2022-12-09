@@ -362,7 +362,7 @@ runs:
         
           application_redis_node_pool_machine_type="e2-highmem-4"
           echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${application_redis_node_pool_machine_type}" >> $GITHUB_ENV
-          application_redis_node_pool_disc_size=100
+          application_redis_node_pool_disc_size=20
           echo "APPLICATION_REDIS_NODE_POOL_DISC_SIZE=${application_redis_node_pool_disc_size}" >> $GITHUB_ENV
           application_redis_node_pool_disc_type="pd-ssd"
           echo "APPLICATION_REDIS_NODE_POOL_DISC_TYPE=${application_redis_node_pool_disc_type}" >> $GITHUB_ENV
