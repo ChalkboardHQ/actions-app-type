@@ -380,7 +380,7 @@ runs:
         
           application_rabbitmq_node_pool_machine_type="n1-standard-1"
           echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${application_rabbitmq_node_pool_machine_type}" >> $GITHUB_ENV
-          application_rabbitmq_node_pool_disc_size=100
+          application_rabbitmq_node_pool_disc_size=20
           echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_SIZE=${application_rabbitmq_node_pool_disc_size}" >> $GITHUB_ENV
           application_rabbitmq_node_pool_disc_type="pd-ssd"
           echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_TYPE=${application_rabbitmq_node_pool_disc_type}" >> $GITHUB_ENV
