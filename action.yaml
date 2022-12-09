@@ -353,11 +353,11 @@ runs:
         
           system_node_pool_machine_type="e2-highcpu-8"
           echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${system_node_pool_machine_type}" >> $GITHUB_ENV
-          system_node_pool_disc_size=100
+          system_node_pool_disc_size=30
           echo "SYSTEM_NODE_POOL_DISC_SIZE=${system_node_pool_disc_size}" >> $GITHUB_ENV
           system_node_pool_disc_type="pd-ssd"
           echo "SYSTEM_NODE_POOL_DISC_TYPE=${system_node_pool_disc_type}" >> $GITHUB_ENV
-          system_node_pool_spot_type=false
+          system_node_pool_spot_type=true
           echo "SYSTEM_NODE_POOL_SPOT_TYPE=${system_node_pool_spot_type}" >> $GITHUB_ENV
         
           application_redis_node_pool_machine_type="e2-highmem-4"
