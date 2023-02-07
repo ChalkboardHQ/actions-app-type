@@ -83,6 +83,12 @@ outputs:
   hive_image_api_token:
     description: 'app type output hive_image_api_token'
     value: ${{ steps.app_env_common.outputs.hive_image_api_token }}
+  github_client_id:
+    description: 'Github oauth client id'
+    value: ${{ steps.app_env_common.outputs.github_client_id }}
+  github_client_secret:
+    description: 'Github oauth client secret'
+    value: ${{ steps.app_env_common.outputs.github_client_secret }}
 
 runs:
   using: "composite"
@@ -225,6 +231,14 @@ runs:
           echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
           echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
+          
+          github_client_id="${{ fromJson(inputs.secrets).CLIENT_ID_GITHUB_ALPHA }}"
+          echo "GITHUB_CLIENT_ID=${github_client_id}" >> $GITHUB_ENV
+          echo "github_client_id=$(echo $github_client_id)" >> $GITHUB_OUTPUT
+          
+          github_client_secret="${{ fromJson(inputs.secrets).CLIENT_SECRET_GITHUB_ALPHA }}"
+          echo "GITHUB_CLIENT_SECRET=${github_client_secret}" >> $GITHUB_ENV
+          echo "github_client_secret=$(echo $github_client_secret)" >> $GITHUB_OUTPUT
 
           gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_DEV }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
