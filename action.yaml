@@ -254,6 +254,9 @@ runs:
           db_database="${{ fromJson(inputs.secrets).DB_DATABASE_ALPHA }}"
           echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
           echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
+        
+          google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_ALPHA }}"
+          echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
 
           app_type="alpha"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
@@ -348,6 +351,9 @@ runs:
           echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
           echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
 
+          google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_BETA }}"
+          echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
+        
           app_type="beta"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -441,6 +447,9 @@ runs:
           db_database="${{ fromJson(inputs.secrets).DB_DATABASE_PROD }}"
           echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
           echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
+        
+          google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_PROD }}"
+          echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
 
           app_type="prod"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
