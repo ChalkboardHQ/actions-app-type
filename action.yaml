@@ -337,6 +337,14 @@ runs:
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
           echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
 
+          github_client_id="${{ fromJson(inputs.secrets).CLIENT_ID_GITHUB_BETA }}"
+          echo "GITHUB_CLIENT_ID=${github_client_id}" >> $GITHUB_ENV
+          echo "github_client_id=$(echo $github_client_id)" >> $GITHUB_OUTPUT
+        
+          github_client_secret="${{ fromJson(inputs.secrets).CLIENT_SECRET_GITHUB_BETA }}"
+          echo "GITHUB_CLIENT_SECRET=${github_client_secret}" >> $GITHUB_ENV
+          echo "github_client_secret=$(echo $github_client_secret)" >> $GITHUB_OUTPUT
+        
           gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_BETA }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
           echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
@@ -434,6 +442,14 @@ runs:
           echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
           echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
 
+          github_client_id="${{ fromJson(inputs.secrets).CLIENT_ID_GITHUB_PROD }}"
+          echo "GITHUB_CLIENT_ID=${github_client_id}" >> $GITHUB_ENV
+          echo "github_client_id=$(echo $github_client_id)" >> $GITHUB_OUTPUT
+        
+          github_client_secret="${{ fromJson(inputs.secrets).CLIENT_SECRET_GITHUB_PROD }}"
+          echo "GITHUB_CLIENT_SECRET=${github_client_secret}" >> $GITHUB_ENV
+          echo "github_client_secret=$(echo $github_client_secret)" >> $GITHUB_OUTPUT
+        
           gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_PROD }}"
           echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
           echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
