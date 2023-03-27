@@ -271,6 +271,9 @@ runs:
         
           google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_ALPHA }}"
           echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
+        
+          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_ALPHA }}"
+          echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
 
           app_type="alpha"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
@@ -375,7 +378,10 @@ runs:
 
           google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_BETA }}"
           echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
-        
+
+          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_BETA }}"
+          echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
+
           app_type="beta"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -480,6 +486,9 @@ runs:
         
           google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_PROD }}"
           echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
+        
+          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_PROD }}"
+          echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
 
           app_type="prod"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
