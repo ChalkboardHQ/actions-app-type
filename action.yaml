@@ -274,6 +274,12 @@ runs:
         
           payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_ALPHA }}"
           echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
+        
+          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_ALPHA }}"
+          echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
+        
+          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_ALPHA }}"
+          echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
 
           app_type="alpha"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
@@ -381,7 +387,14 @@ runs:
 
           payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_BETA }}"
           echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
-
+        
+        
+          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_BETA }}"
+          echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
+        
+          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_BETA }}"
+          echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
+        
           app_type="beta"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -489,7 +502,13 @@ runs:
         
           payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_PROD }}"
           echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
-
+        
+          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_PROD }}"
+          echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
+        
+          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_PROD }}"
+          echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
+        
           app_type="prod"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
