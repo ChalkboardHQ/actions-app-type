@@ -280,6 +280,12 @@ runs:
         
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_ALPHA }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
+        
+          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_ALPHA }}"
+          echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
+        
+          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_ALPHA }}"
+          echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
 
           app_type="alpha"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
@@ -395,6 +401,12 @@ runs:
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_BETA }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
         
+          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_BETA }}"
+          echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
+        
+          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_BETA }}"
+          echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
+        
           app_type="beta"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -508,6 +520,12 @@ runs:
         
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_PROD }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
+        
+          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_PROD }}"
+          echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
+        
+          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_PROD }}"
+          echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
         
           app_type="prod"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
