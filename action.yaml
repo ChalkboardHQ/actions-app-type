@@ -391,20 +391,20 @@ runs:
           google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_BETA }}"
           echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
 
-          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_BETA }}"
+          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_ALPHA }}"
           echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
         
         
-          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_BETA }}"
+          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_ALPHA }}"
           echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
         
-          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_BETA }}"
+          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_ALPHA }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
         
-          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_BETA }}"
+          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_ALPHA }}"
           echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
         
-          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_BETA }}"
+          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_ALPHA }}"
           echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
         
           app_type="beta"
