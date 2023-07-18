@@ -281,6 +281,12 @@ runs:
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_ALPHA }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
         
+          dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_ALPHA }}"
+          echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
+        
+          dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_ALPHA }}"
+          echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
+        
           intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_ALPHA }}"
           echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
         
@@ -401,6 +407,12 @@ runs:
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_BETA }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
         
+          dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_BETA }}"
+          echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
+        
+          dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_BETA }}"
+          echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
+        
           intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_BETA }}"
           echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
         
@@ -520,6 +532,12 @@ runs:
         
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_PROD }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
+        
+          dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_PROD }}"
+          echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
+        
+          dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_PROD }}"
+          echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
         
           intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_PROD }}"
           echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
