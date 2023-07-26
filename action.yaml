@@ -167,7 +167,7 @@ runs:
         echo "SENTRY_DSN=${sentry_dsn}" >> $GITHUB_ENV
         echo "sentry_dsn=$(echo $sentry_dsn)" >> $GITHUB_OUTPUT
 
-    - name: check app type
+    - name: check app type alpha
       id: app_env
       if: ${{ steps.extract_branch.outputs.branch == 'alpha' }}
       shell: bash
@@ -301,264 +301,276 @@ runs:
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
         fi
-#        if [[ "${{ steps.extract_branch.outputs.branch }}" == "beta" ]]; then
-#
-#          system_node_pool_machine_type="e2-highcpu-4"
-#          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${system_node_pool_machine_type}" >> $GITHUB_ENV
-#          system_node_pool_disc_size=25
-#          echo "SYSTEM_NODE_POOL_DISC_SIZE=${system_node_pool_disc_size}" >> $GITHUB_ENV
-#          system_node_pool_disc_type="pd-standard"
-#          echo "SYSTEM_NODE_POOL_DISC_TYPE=${system_node_pool_disc_type}" >> $GITHUB_ENV
-#          system_node_pool_spot_type=true
-#          echo "SYSTEM_NODE_POOL_SPOT_TYPE=${system_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          application_redis_node_pool_machine_type="n1-standard-2"
-#          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${application_redis_node_pool_machine_type}" >> $GITHUB_ENV
-#          application_redis_node_pool_disc_size=25
-#          echo "APPLICATION_REDIS_NODE_POOL_DISC_SIZE=${application_redis_node_pool_disc_size}" >> $GITHUB_ENV
-#          application_redis_node_pool_disc_type="pd-standard"
-#          echo "APPLICATION_REDIS_NODE_POOL_DISC_TYPE=${application_redis_node_pool_disc_type}" >> $GITHUB_ENV
-#          application_redis_node_pool_spot_type=true
-#          echo "APPLICATION_REDIS_NODE_POOL_SPOT_TYPE=${application_redis_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          application_elastic_search_node_pool_machine_type="e2-standard-2"
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_MACHINE_TYPE=${application_elastic_search_node_pool_machine_type}" >> $GITHUB_ENV
-#          application_elastic_search_node_pool_disc_size=25
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_SIZE=${application_elastic_search_node_pool_disc_size}" >> $GITHUB_ENV
-#          application_elastic_search_node_pool_disc_type="pd-standard"
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_TYPE=${application_elastic_search_node_pool_disc_type}" >> $GITHUB_ENV
-#          application_elastic_search_node_pool_spot_type=true
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_SPOT_TYPE=${application_elastic_search_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          application_rabbitmq_node_pool_machine_type="e2-small"
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${application_rabbitmq_node_pool_machine_type}" >> $GITHUB_ENV
-#          application_rabbitmq_node_pool_disc_size=25
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_SIZE=${application_rabbitmq_node_pool_disc_size}" >> $GITHUB_ENV
-#          application_rabbitmq_node_pool_disc_type="pd-standard"
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_TYPE=${application_rabbitmq_node_pool_disc_type}" >> $GITHUB_ENV
-#          application_rabbitmq_node_pool_spot_type=true
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_SPOT_TYPE=${application_rabbitmq_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          system_ingress_node_pool_machine_type="e2-small"
-#          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${system_ingress_node_pool_machine_type}" >> $GITHUB_ENV
-#          system_ingress_node_pool_disc_size=25
-#          echo "SYSTEM_INGRESS_NODE_POOL_DISC_SIZE=${system_ingress_node_pool_disc_size}" >> $GITHUB_ENV
-#          system_ingress_node_pool_disc_type="pd-standard"
-#          echo "SYSTEM_INGRESS_NODE_POOL_DISC_TYPE=${system_ingress_node_pool_disc_type}" >> $GITHUB_ENV
-#          system_ingress_node_pool_spot_type=true
-#          echo "SYSTEM_INGRESS_NODE_POOL_SPOT_TYPE=${system_ingress_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          memory_worker_node_pool_machine_type="e2-highmem-4"
-#          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memory_worker_node_pool_machine_type}" >> $GITHUB_ENV
-#          memory_worker_node_pool_disc_size=25
-#          echo "MEMORY_WORKER_NODE_POOL_DISC_SIZE=${memory_worker_node_pool_disc_size}" >> $GITHUB_ENV
-#          memory_worker_node_pool_disc_type="pd-standard"
-#          echo "MEMORY_WORKER_NODE_POOL_DISC_TYPE=${memory_worker_node_pool_disc_type}" >> $GITHUB_ENV
-#          memory_worker_node_pool_spot_type=true
-#          echo "MEMORY_WORKER_NODE_POOL_SPOT_TYPE=${memory_worker_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_BETA }}"
-#          echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
-#          echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
-#          echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
-#
-#          github_client_id="${{ fromJson(inputs.secrets).CLIENT_ID_GITHUB_BETA }}"
-#          echo "GITHUB_CLIENT_ID=${github_client_id}" >> $GITHUB_ENV
-#          echo "github_client_id=$(echo $github_client_id)" >> $GITHUB_OUTPUT
-#
-#          github_client_secret="${{ fromJson(inputs.secrets).CLIENT_SECRET_GITHUB_BETA }}"
-#          echo "GITHUB_CLIENT_SECRET=${github_client_secret}" >> $GITHUB_ENV
-#          echo "github_client_secret=$(echo $github_client_secret)" >> $GITHUB_OUTPUT
-#
-#          gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_BETA }}"
-#          echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
-#          echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
-#
-#          gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_BETA }}"
-#          echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
-#          echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
-#
-#          db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_BETA }}"
-#          echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
-#          echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
-#
-#          db_host="${{ fromJson(inputs.secrets).DB_HOST_BETA }}"
-#          echo "DB_HOST=${db_host}" >> $GITHUB_ENV
-#          echo "db_host=$(echo $db_host)" >> $GITHUB_OUTPUT
-#
-#          db_username="${{ fromJson(inputs.secrets).DB_USERNAME_BETA }}"
-#          echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
-#          echo "db_username=$(echo $db_username)" >> $GITHUB_OUTPUT
-#
-#          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_BETA }}"
-#          echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
-#          echo "db_password=$(echo $db_password)" >> $GITHUB_OUTPUT
-#
-#          db_database="${{ fromJson(inputs.secrets).DB_DATABASE_BETA }}"
-#          echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
-#          echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
-#
-#          google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_BETA }}"
-#          echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
-#
-#          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_BETA }}"
-#          echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
-#
-#
-#          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_BETA }}"
-#          echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
-#
-#          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_BETA }}"
-#          echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
-#
-#          socure_api_key_canada="${{ fromJson(inputs.secrets).SOCURE_API_KEY_CANADA_BETA }}"
-#          echo "SOCURE_API_KEY_CANADA=${socure_api_key_canada}" >> $GITHUB_ENV
-#
-#          dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_BETA }}"
-#          echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
-#
-#          dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_BETA }}"
-#          echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
-#
-#          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_BETA }}"
-#          echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
-#
-#          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_BETA }}"
-#          echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
-#
-#          app_type="beta"
-#          echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
-#          echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
-#        fi
-#        if [[ "${{ steps.extract_branch.outputs.branch }}" == "master" ]]; then
-#
-#          system_node_pool_machine_type="e2-highcpu-8"
-#          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${system_node_pool_machine_type}" >> $GITHUB_ENV
-#          system_node_pool_disc_size=30
-#          echo "SYSTEM_NODE_POOL_DISC_SIZE=${system_node_pool_disc_size}" >> $GITHUB_ENV
-#          system_node_pool_disc_type="pd-ssd"
-#          echo "SYSTEM_NODE_POOL_DISC_TYPE=${system_node_pool_disc_type}" >> $GITHUB_ENV
-#          system_node_pool_spot_type=true
-#          echo "SYSTEM_NODE_POOL_SPOT_TYPE=${system_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          application_redis_node_pool_machine_type="e2-highmem-4"
-#          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${application_redis_node_pool_machine_type}" >> $GITHUB_ENV
-#          application_redis_node_pool_disc_size=20
-#          echo "APPLICATION_REDIS_NODE_POOL_DISC_SIZE=${application_redis_node_pool_disc_size}" >> $GITHUB_ENV
-#          application_redis_node_pool_disc_type="pd-ssd"
-#          echo "APPLICATION_REDIS_NODE_POOL_DISC_TYPE=${application_redis_node_pool_disc_type}" >> $GITHUB_ENV
-#          application_redis_node_pool_spot_type=false
-#          echo "APPLICATION_REDIS_NODE_POOL_SPOT_TYPE=${application_redis_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          application_elastic_search_node_pool_machine_type="e2-standard-2"
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_MACHINE_TYPE=${application_elastic_search_node_pool_machine_type}" >> $GITHUB_ENV
-#          application_elastic_search_node_pool_disc_size=20
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_SIZE=${application_elastic_search_node_pool_disc_size}" >> $GITHUB_ENV
-#          application_elastic_search_node_pool_disc_type="pd-ssd"
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_TYPE=${application_elastic_search_node_pool_disc_type}" >> $GITHUB_ENV
-#          application_elastic_search_node_pool_spot_type=false
-#          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_SPOT_TYPE=${application_elastic_search_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          application_rabbitmq_node_pool_machine_type="n1-standard-1"
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${application_rabbitmq_node_pool_machine_type}" >> $GITHUB_ENV
-#          application_rabbitmq_node_pool_disc_size=20
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_SIZE=${application_rabbitmq_node_pool_disc_size}" >> $GITHUB_ENV
-#          application_rabbitmq_node_pool_disc_type="pd-ssd"
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_TYPE=${application_rabbitmq_node_pool_disc_type}" >> $GITHUB_ENV
-#          application_rabbitmq_node_pool_spot_type=false
-#          echo "APPLICATION_RABBITMQ_NODE_POOL_SPOT_TYPE=${application_rabbitmq_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          system_ingress_node_pool_machine_type="e2-small"
-#          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${system_ingress_node_pool_machine_type}" >> $GITHUB_ENV
-#          system_ingress_node_pool_disc_size=100
-#          echo "SYSTEM_INGRESS_NODE_POOL_DISC_SIZE=${system_ingress_node_pool_disc_size}" >> $GITHUB_ENV
-#          system_ingress_node_pool_disc_type="pd-ssd"
-#          echo "SYSTEM_INGRESS_NODE_POOL_DISC_TYPE=${system_ingress_node_pool_disc_type}" >> $GITHUB_ENV
-#          system_ingress_node_pool_spot_type=false
-#          echo "SYSTEM_INGRESS_NODE_POOL_SPOT_TYPE=${system_ingress_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#          memory_worker_node_pool_machine_type="e2-highmem-4"
-#          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memory_worker_node_pool_machine_type}" >> $GITHUB_ENV
-#          memory_worker_node_pool_disc_size=100
-#          echo "MEMORY_WORKER_NODE_POOL_DISC_SIZE=${memory_worker_node_pool_disc_size}" >> $GITHUB_ENV
-#          memory_worker_node_pool_disc_type="pd-ssd"
-#          echo "MEMORY_WORKER_NODE_POOL_DISC_TYPE=${memory_worker_node_pool_disc_type}" >> $GITHUB_ENV
-#          memory_worker_node_pool_spot_type=true
-#          echo "MEMORY_WORKER_NODE_POOL_SPOT_TYPE=${memory_worker_node_pool_spot_type}" >> $GITHUB_ENV
-#
-#
-#          gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_PROD }}"
-#          echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
-#          echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
-#          echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
-#
-#          github_client_id="${{ fromJson(inputs.secrets).CLIENT_ID_GITHUB_PROD }}"
-#          echo "GITHUB_CLIENT_ID=${github_client_id}" >> $GITHUB_ENV
-#          echo "github_client_id=$(echo $github_client_id)" >> $GITHUB_OUTPUT
-#
-#          github_client_secret="${{ fromJson(inputs.secrets).CLIENT_SECRET_GITHUB_PROD }}"
-#          echo "GITHUB_CLIENT_SECRET=${github_client_secret}" >> $GITHUB_ENV
-#          echo "github_client_secret=$(echo $github_client_secret)" >> $GITHUB_OUTPUT
-#
-#          gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_PROD }}"
-#          echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
-#          echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
-#
-#          gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_PROD }}"
-#          echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
-#          echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
-#
-#          db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
-#          echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
-#          echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
-#
-#          db_host="${{ fromJson(inputs.secrets).DB_HOST_PROD }}"
-#          echo "DB_HOST=${db_host}" >> $GITHUB_ENV
-#          echo "db_host=$(echo $db_host)" >> $GITHUB_OUTPUT
-#
-#          db_username="${{ fromJson(inputs.secrets).DB_USERNAME_PROD }}"
-#          echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
-#          echo "db_username=$(echo $db_username)" >> $GITHUB_OUTPUT
-#
-#          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_PROD }}"
-#          echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
-#          echo "db_password=$(echo $db_password)" >> $GITHUB_OUTPUT
-#
-#          db_database="${{ fromJson(inputs.secrets).DB_DATABASE_PROD }}"
-#          echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
-#          echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
-#
-#          google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_PROD }}"
-#          echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
-#
-#          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_PROD }}"
-#          echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
-#
-#          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_PROD }}"
-#          echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
-#
-#          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_PROD }}"
-#          echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
-#
-#          socure_api_key_canada="${{ fromJson(inputs.secrets).SOCURE_API_KEY_CANADA_PROD }}"
-#          echo "SOCURE_API_KEY_CANADA=${socure_api_key_canada}" >> $GITHUB_ENV
-#
-#          dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_PROD }}"
-#          echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
-#
-#          dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_PROD }}"
-#          echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
-#
-#          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_PROD }}"
-#          echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
-#
-#          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_PROD }}"
-#          echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
-#
-#          app_type="prod"
-#          echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
-#          echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
-#        fi
+
+    - name: check app type beta
+      id: app_env
+      if: ${{ steps.extract_branch.outputs.branch == 'beta' }}
+      shell: bash
+      run: |
+        if [[ "${{ steps.extract_branch.outputs.branch }}" == "beta" ]]; then
+
+          system_node_pool_machine_type="e2-highcpu-4"
+          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${system_node_pool_machine_type}" >> $GITHUB_ENV
+          system_node_pool_disc_size=25
+          echo "SYSTEM_NODE_POOL_DISC_SIZE=${system_node_pool_disc_size}" >> $GITHUB_ENV
+          system_node_pool_disc_type="pd-standard"
+          echo "SYSTEM_NODE_POOL_DISC_TYPE=${system_node_pool_disc_type}" >> $GITHUB_ENV
+          system_node_pool_spot_type=true
+          echo "SYSTEM_NODE_POOL_SPOT_TYPE=${system_node_pool_spot_type}" >> $GITHUB_ENV
+
+          application_redis_node_pool_machine_type="n1-standard-2"
+          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${application_redis_node_pool_machine_type}" >> $GITHUB_ENV
+          application_redis_node_pool_disc_size=25
+          echo "APPLICATION_REDIS_NODE_POOL_DISC_SIZE=${application_redis_node_pool_disc_size}" >> $GITHUB_ENV
+          application_redis_node_pool_disc_type="pd-standard"
+          echo "APPLICATION_REDIS_NODE_POOL_DISC_TYPE=${application_redis_node_pool_disc_type}" >> $GITHUB_ENV
+          application_redis_node_pool_spot_type=true
+          echo "APPLICATION_REDIS_NODE_POOL_SPOT_TYPE=${application_redis_node_pool_spot_type}" >> $GITHUB_ENV
+
+          application_elastic_search_node_pool_machine_type="e2-standard-2"
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_MACHINE_TYPE=${application_elastic_search_node_pool_machine_type}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_disc_size=25
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_SIZE=${application_elastic_search_node_pool_disc_size}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_disc_type="pd-standard"
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_TYPE=${application_elastic_search_node_pool_disc_type}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_spot_type=true
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_SPOT_TYPE=${application_elastic_search_node_pool_spot_type}" >> $GITHUB_ENV
+
+          application_rabbitmq_node_pool_machine_type="e2-small"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${application_rabbitmq_node_pool_machine_type}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_disc_size=25
+          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_SIZE=${application_rabbitmq_node_pool_disc_size}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_disc_type="pd-standard"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_TYPE=${application_rabbitmq_node_pool_disc_type}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_spot_type=true
+          echo "APPLICATION_RABBITMQ_NODE_POOL_SPOT_TYPE=${application_rabbitmq_node_pool_spot_type}" >> $GITHUB_ENV
+
+          system_ingress_node_pool_machine_type="e2-small"
+          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${system_ingress_node_pool_machine_type}" >> $GITHUB_ENV
+          system_ingress_node_pool_disc_size=25
+          echo "SYSTEM_INGRESS_NODE_POOL_DISC_SIZE=${system_ingress_node_pool_disc_size}" >> $GITHUB_ENV
+          system_ingress_node_pool_disc_type="pd-standard"
+          echo "SYSTEM_INGRESS_NODE_POOL_DISC_TYPE=${system_ingress_node_pool_disc_type}" >> $GITHUB_ENV
+          system_ingress_node_pool_spot_type=true
+          echo "SYSTEM_INGRESS_NODE_POOL_SPOT_TYPE=${system_ingress_node_pool_spot_type}" >> $GITHUB_ENV
+
+          memory_worker_node_pool_machine_type="e2-highmem-4"
+          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memory_worker_node_pool_machine_type}" >> $GITHUB_ENV
+          memory_worker_node_pool_disc_size=25
+          echo "MEMORY_WORKER_NODE_POOL_DISC_SIZE=${memory_worker_node_pool_disc_size}" >> $GITHUB_ENV
+          memory_worker_node_pool_disc_type="pd-standard"
+          echo "MEMORY_WORKER_NODE_POOL_DISC_TYPE=${memory_worker_node_pool_disc_type}" >> $GITHUB_ENV
+          memory_worker_node_pool_spot_type=true
+          echo "MEMORY_WORKER_NODE_POOL_SPOT_TYPE=${memory_worker_node_pool_spot_type}" >> $GITHUB_ENV
+
+          gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_BETA }}"
+          echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
+          echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
+          echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
+
+          github_client_id="${{ fromJson(inputs.secrets).CLIENT_ID_GITHUB_BETA }}"
+          echo "GITHUB_CLIENT_ID=${github_client_id}" >> $GITHUB_ENV
+          echo "github_client_id=$(echo $github_client_id)" >> $GITHUB_OUTPUT
+
+          github_client_secret="${{ fromJson(inputs.secrets).CLIENT_SECRET_GITHUB_BETA }}"
+          echo "GITHUB_CLIENT_SECRET=${github_client_secret}" >> $GITHUB_ENV
+          echo "github_client_secret=$(echo $github_client_secret)" >> $GITHUB_OUTPUT
+
+          gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_BETA }}"
+          echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
+          echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
+
+          gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_BETA }}"
+          echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
+          echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
+
+          db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_BETA }}"
+          echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
+          echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
+
+          db_host="${{ fromJson(inputs.secrets).DB_HOST_BETA }}"
+          echo "DB_HOST=${db_host}" >> $GITHUB_ENV
+          echo "db_host=$(echo $db_host)" >> $GITHUB_OUTPUT
+
+          db_username="${{ fromJson(inputs.secrets).DB_USERNAME_BETA }}"
+          echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
+          echo "db_username=$(echo $db_username)" >> $GITHUB_OUTPUT
+
+          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_BETA }}"
+          echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
+          echo "db_password=$(echo $db_password)" >> $GITHUB_OUTPUT
+
+          db_database="${{ fromJson(inputs.secrets).DB_DATABASE_BETA }}"
+          echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
+          echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
+
+          google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_BETA }}"
+          echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
+
+          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_BETA }}"
+          echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
+
+
+          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_BETA }}"
+          echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
+
+          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_BETA }}"
+          echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
+
+          socure_api_key_canada="${{ fromJson(inputs.secrets).SOCURE_API_KEY_CANADA_BETA }}"
+          echo "SOCURE_API_KEY_CANADA=${socure_api_key_canada}" >> $GITHUB_ENV
+
+          dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_BETA }}"
+          echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
+
+          dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_BETA }}"
+          echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
+
+          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_BETA }}"
+          echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
+
+          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_BETA }}"
+          echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
+
+          app_type="beta"
+          echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
+          echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
+        fi
+
+    - name: check app type prod
+      id: app_env
+      if: ${{ steps.extract_branch.outputs.branch == 'master' }}
+      shell: bash
+      run: |
+        if [[ "${{ steps.extract_branch.outputs.branch }}" == "master" ]]; then
+
+          system_node_pool_machine_type="e2-highcpu-8"
+          echo "SYSTEM_NODE_POOL_MACHINE_TYPE=${system_node_pool_machine_type}" >> $GITHUB_ENV
+          system_node_pool_disc_size=30
+          echo "SYSTEM_NODE_POOL_DISC_SIZE=${system_node_pool_disc_size}" >> $GITHUB_ENV
+          system_node_pool_disc_type="pd-ssd"
+          echo "SYSTEM_NODE_POOL_DISC_TYPE=${system_node_pool_disc_type}" >> $GITHUB_ENV
+          system_node_pool_spot_type=true
+          echo "SYSTEM_NODE_POOL_SPOT_TYPE=${system_node_pool_spot_type}" >> $GITHUB_ENV
+
+          application_redis_node_pool_machine_type="e2-highmem-4"
+          echo "APPLICATION_REDIS_NODE_POOL_MACHINE_TYPE=${application_redis_node_pool_machine_type}" >> $GITHUB_ENV
+          application_redis_node_pool_disc_size=20
+          echo "APPLICATION_REDIS_NODE_POOL_DISC_SIZE=${application_redis_node_pool_disc_size}" >> $GITHUB_ENV
+          application_redis_node_pool_disc_type="pd-ssd"
+          echo "APPLICATION_REDIS_NODE_POOL_DISC_TYPE=${application_redis_node_pool_disc_type}" >> $GITHUB_ENV
+          application_redis_node_pool_spot_type=false
+          echo "APPLICATION_REDIS_NODE_POOL_SPOT_TYPE=${application_redis_node_pool_spot_type}" >> $GITHUB_ENV
+
+          application_elastic_search_node_pool_machine_type="e2-standard-2"
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_MACHINE_TYPE=${application_elastic_search_node_pool_machine_type}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_disc_size=20
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_SIZE=${application_elastic_search_node_pool_disc_size}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_disc_type="pd-ssd"
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_DISC_TYPE=${application_elastic_search_node_pool_disc_type}" >> $GITHUB_ENV
+          application_elastic_search_node_pool_spot_type=false
+          echo "APPLICATION_ELASTIC_SEARCH_NODE_POOL_SPOT_TYPE=${application_elastic_search_node_pool_spot_type}" >> $GITHUB_ENV
+
+          application_rabbitmq_node_pool_machine_type="n1-standard-1"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_MACHINE_TYPE=${application_rabbitmq_node_pool_machine_type}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_disc_size=20
+          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_SIZE=${application_rabbitmq_node_pool_disc_size}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_disc_type="pd-ssd"
+          echo "APPLICATION_RABBITMQ_NODE_POOL_DISC_TYPE=${application_rabbitmq_node_pool_disc_type}" >> $GITHUB_ENV
+          application_rabbitmq_node_pool_spot_type=false
+          echo "APPLICATION_RABBITMQ_NODE_POOL_SPOT_TYPE=${application_rabbitmq_node_pool_spot_type}" >> $GITHUB_ENV
+
+          system_ingress_node_pool_machine_type="e2-small"
+          echo "SYSTEM_INGRESS_NODE_POOL_MACHINE_TYPE=${system_ingress_node_pool_machine_type}" >> $GITHUB_ENV
+          system_ingress_node_pool_disc_size=100
+          echo "SYSTEM_INGRESS_NODE_POOL_DISC_SIZE=${system_ingress_node_pool_disc_size}" >> $GITHUB_ENV
+          system_ingress_node_pool_disc_type="pd-ssd"
+          echo "SYSTEM_INGRESS_NODE_POOL_DISC_TYPE=${system_ingress_node_pool_disc_type}" >> $GITHUB_ENV
+          system_ingress_node_pool_spot_type=false
+          echo "SYSTEM_INGRESS_NODE_POOL_SPOT_TYPE=${system_ingress_node_pool_spot_type}" >> $GITHUB_ENV
+
+          memory_worker_node_pool_machine_type="e2-highmem-4"
+          echo "MEMORY_WORKER_NODE_POOL_MACHINE_TYPE=${memory_worker_node_pool_machine_type}" >> $GITHUB_ENV
+          memory_worker_node_pool_disc_size=100
+          echo "MEMORY_WORKER_NODE_POOL_DISC_SIZE=${memory_worker_node_pool_disc_size}" >> $GITHUB_ENV
+          memory_worker_node_pool_disc_type="pd-ssd"
+          echo "MEMORY_WORKER_NODE_POOL_DISC_TYPE=${memory_worker_node_pool_disc_type}" >> $GITHUB_ENV
+          memory_worker_node_pool_spot_type=true
+          echo "MEMORY_WORKER_NODE_POOL_SPOT_TYPE=${memory_worker_node_pool_spot_type}" >> $GITHUB_ENV
+
+
+          gcp_project="${{ fromJson(inputs.secrets).GCP_PROJECT_PROD }}"
+          echo "GCP_PROJECT=${gcp_project}" >> $GITHUB_ENV
+          echo "GCP_PROJECT_ID=${gcp_project}" >> $GITHUB_ENV
+          echo "gcp_project=$(echo $gcp_project)" >> $GITHUB_OUTPUT
+
+          github_client_id="${{ fromJson(inputs.secrets).CLIENT_ID_GITHUB_PROD }}"
+          echo "GITHUB_CLIENT_ID=${github_client_id}" >> $GITHUB_ENV
+          echo "github_client_id=$(echo $github_client_id)" >> $GITHUB_OUTPUT
+
+          github_client_secret="${{ fromJson(inputs.secrets).CLIENT_SECRET_GITHUB_PROD }}"
+          echo "GITHUB_CLIENT_SECRET=${github_client_secret}" >> $GITHUB_ENV
+          echo "github_client_secret=$(echo $github_client_secret)" >> $GITHUB_OUTPUT
+
+          gcp_sa="${{ fromJson(inputs.secrets).GCP_SA_PROD }}"
+          echo "GCP_SA=${gcp_sa}" >> $GITHUB_ENV
+          echo "gcp_sa=$(echo $gcp_sa)" >> $GITHUB_OUTPUT
+
+          gcp_wip="${{ fromJson(inputs.secrets).GCP_WIP_PROD }}"
+          echo "GCP_WIP=${gcp_wip}" >> $GITHUB_ENV
+          echo "gcp_wip=$(echo $gcp_wip)" >> $GITHUB_OUTPUT
+
+          db_host_replica="${{ fromJson(inputs.secrets).DB_HOST_REPLICA_PROD }}"
+          echo "DB_HOST_REPLICA=${db_host_replica}" >> $GITHUB_ENV
+          echo "db_host_replica=$(echo $db_host_replica)" >> $GITHUB_OUTPUT
+
+          db_host="${{ fromJson(inputs.secrets).DB_HOST_PROD }}"
+          echo "DB_HOST=${db_host}" >> $GITHUB_ENV
+          echo "db_host=$(echo $db_host)" >> $GITHUB_OUTPUT
+
+          db_username="${{ fromJson(inputs.secrets).DB_USERNAME_PROD }}"
+          echo "DB_USERNAME=${db_username}" >> $GITHUB_ENV
+          echo "db_username=$(echo $db_username)" >> $GITHUB_OUTPUT
+
+          db_password="${{ fromJson(inputs.secrets).DB_PASSWORD_PROD }}"
+          echo "DB_PASSWORD=${db_password}" >> $GITHUB_ENV
+          echo "db_password=$(echo $db_password)" >> $GITHUB_OUTPUT
+
+          db_database="${{ fromJson(inputs.secrets).DB_DATABASE_PROD }}"
+          echo "DB_DATABASE=${db_database}" >> $GITHUB_ENV
+          echo "db_database=$(echo $db_database)" >> $GITHUB_OUTPUT
+
+          google_recaptcha_secret_key="${{ fromJson(inputs.secrets).GOOGLE_RECAPTCHA_SECRET_KEY_PROD }}"
+          echo "GOOGLE_RECAPTCHA_SECRET_KEY=${google_recaptcha_secret_key}" >> $GITHUB_ENV
+
+          payment_hashing_token="${{ fromJson(inputs.secrets).PAYMENT_HASHING_TOKEN_PROD }}"
+          echo "PAYMENT_HASHING_TOKEN=${payment_hashing_token}" >> $GITHUB_ENV
+
+          socure_domain="${{ fromJson(inputs.secrets).SOCURE_DOMAIN_PROD }}"
+          echo "SOCURE_DOMAIN=${socure_domain}" >> $GITHUB_ENV
+
+          socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_PROD }}"
+          echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
+
+          socure_api_key_canada="${{ fromJson(inputs.secrets).SOCURE_API_KEY_CANADA_PROD }}"
+          echo "SOCURE_API_KEY_CANADA=${socure_api_key_canada}" >> $GITHUB_ENV
+
+          dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_PROD }}"
+          echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
+
+          dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_PROD }}"
+          echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
+
+          intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_PROD }}"
+          echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
+
+          intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_PROD }}"
+          echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
+
+          app_type="prod"
+          echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
+          echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
+        fi
 
 
     - name: finish check app type
