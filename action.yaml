@@ -38,18 +38,6 @@ outputs:
   sentry_dsn:
     description: 'app type output sentry_dsn'
     value: ${{ steps.app_env_common.outputs.sentry_dsn }}
-  gcp_project:
-    description: 'app type output gcp_project'
-    value: ${{ steps.app_env.outputs.gcp_project }}
-  gcp_region:
-    description: 'app type output gcp_region'
-    value: ${{ steps.app_env.outputs.gcp_region }}
-  gcp_sa:
-    description: 'app type output gcp_sa'
-    value: ${{ steps.app_env.outputs.gcp_sa }}
-  gcp_wip:
-    description: 'app type output gcp_wip'
-    value: ${{ steps.app_env.outputs.gcp_wip }}
   name:
     description: 'app type output name'
     value: ${{ steps.app_env_common.outputs.name }}
@@ -168,7 +156,7 @@ runs:
         echo "sentry_dsn=$(echo $sentry_dsn)" >> $GITHUB_OUTPUT
 
     - name: check app type alpha
-      id: app_env
+      id: app_env_alpha
       if: ${{ steps.extract_branch.outputs.branch == 'alpha' }}
       shell: bash
       run: |
@@ -303,7 +291,7 @@ runs:
         fi
 
     - name: check app type beta
-      id: app_env
+      id: app_env_beta
       if: ${{ steps.extract_branch.outputs.branch == 'beta' }}
       shell: bash
       run: |
@@ -438,7 +426,7 @@ runs:
         fi
 
     - name: check app type prod
-      id: app_env
+      id: app_env_prod
       if: ${{ steps.extract_branch.outputs.branch == 'master' }}
       shell: bash
       run: |
