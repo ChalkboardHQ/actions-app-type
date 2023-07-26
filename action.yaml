@@ -280,10 +280,7 @@ runs:
         
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_ALPHA }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
-          
-          socure_api_key_canada="${{ fromJson(inputs.secrets).SOCURE_API_KEY_CANADA_ALPHA }}"
-          echo "SOCURE_API_KEY_CANADA=${socure_api_key_canada}" >> $GITHUB_ENV
-
+        
           dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_ALPHA }}"
           echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
         
@@ -409,10 +406,7 @@ runs:
         
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_BETA }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
-          
-          socure_api_key_canada="${{ fromJson(inputs.secrets).SOCURE_API_KEY_CANADA_BETA }}"
-          echo "SOCURE_API_KEY_CANADA=${socure_api_key_canada}" >> $GITHUB_ENV
-
+        
           dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_BETA }}"
           echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
         
@@ -538,10 +532,7 @@ runs:
         
           socure_api_key="${{ fromJson(inputs.secrets).SOCURE_API_KEY_PROD }}"
           echo "SOCURE_API_KEY=${socure_api_key}" >> $GITHUB_ENV
-          
-          socure_api_key_canada="${{ fromJson(inputs.secrets).SOCURE_API_KEY_CANADA_PROD }}"
-          echo "SOCURE_API_KEY_CANADA=${socure_api_key_canada}" >> $GITHUB_ENV
-          
+        
           dst_api_password="${{ fromJson(inputs.secrets).DST_API_PASSWORD_PROD }}"
           echo "DST_API_PASSWORD=${dst_api_password}" >> $GITHUB_ENV
         
