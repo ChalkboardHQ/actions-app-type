@@ -562,5 +562,6 @@ runs:
 
 
     - name: finish check app type
+      shell: bash
       run: |
         echo "finish check app type"
