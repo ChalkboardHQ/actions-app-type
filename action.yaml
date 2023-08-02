@@ -279,6 +279,9 @@ runs:
           dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_ALPHA }}"
           echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
         
+          mongo_url_prod="test"
+          echo "MONGO_URL_PROD=${mongo_url_prod}" >> $GITHUB_ENV
+        
           intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_ALPHA }}"
           echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
         
@@ -413,6 +416,10 @@ runs:
 
           dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_BETA }}"
           echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
+        
+        
+          mongo_url_prod="test"
+          echo "MONGO_URL_PROD=${mongo_url_prod}" >> $GITHUB_ENV
 
           intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_BETA }}"
           echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
@@ -548,6 +555,9 @@ runs:
 
           dst_api_username="${{ fromJson(inputs.secrets).DST_API_USERNAME_PROD }}"
           echo "DST_API_USERNAME=${dst_api_username}" >> $GITHUB_ENV
+        
+          mongo_url_prod="${{ fromJson(inputs.secrets).MONGO_URL_PROD }}"
+          echo "MONGO_URL_PROD=${mongo_url_prod}" >> $GITHUB_ENV
 
           intercom_ios_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_IOS_HASHING_TOKEN_PROD }}"
           echo "INTERCOM_IOS_HASHING_TOKEN=${intercom_ios_hashing_token}" >> $GITHUB_ENV
