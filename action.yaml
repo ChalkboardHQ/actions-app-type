@@ -287,7 +287,10 @@ runs:
         
           intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_ALPHA }}"
           echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
-
+          
+          swish_api_key="${{ fromJson(inputs.secrets).SWISH_API_KEY_ALPHA }}"
+          echo "SWISH_API_KEY=${swish_api_key}" >> $GITHUB_ENV
+        
           app_type="alpha"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -426,7 +429,10 @@ runs:
 
           intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_BETA }}"
           echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
-
+          
+          swish_api_key="${{ fromJson(inputs.secrets).SWISH_API_KEY_BETA }}"
+          echo "SWISH_API_KEY=${swish_api_key}" >> $GITHUB_ENV
+        
           app_type="beta"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -564,7 +570,10 @@ runs:
 
           intercom_android_hashing_token="${{ fromJson(inputs.secrets).INTERCOM_ANDROID_HASHING_TOKEN_PROD }}"
           echo "INTERCOM_ANDROID_HASHING_TOKEN=${intercom_android_hashing_token}" >> $GITHUB_ENV
-
+          
+          swish_api_key="${{ fromJson(inputs.secrets).SWISH_API_KEY_PROD }}"
+          echo "SWISH_API_KEY=${swish_api_key}" >> $GITHUB_ENV
+        
           app_type="prod"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
