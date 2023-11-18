@@ -291,6 +291,9 @@ runs:
           swish_api_key="${{ fromJson(inputs.secrets).SWISH_API_KEY_ALPHA }}"
           echo "SWISH_API_KEY=${swish_api_key}" >> $GITHUB_ENV
         
+          app_secret="${{ fromJson(inputs.secrets).APP_SECRET }}"
+          echo "APP_SECRET=${app_secret}" >> $GITHUB_ENV
+        
           app_type="alpha"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -433,6 +436,9 @@ runs:
           swish_api_key="${{ fromJson(inputs.secrets).SWISH_API_KEY_BETA }}"
           echo "SWISH_API_KEY=${swish_api_key}" >> $GITHUB_ENV
         
+          app_secret="${{ fromJson(inputs.secrets).APP_SECRET }}"
+          echo "APP_SECRET=${app_secret}" >> $GITHUB_ENV
+        
           app_type="beta"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
           echo "app_type=$(echo $app_type)" >> $GITHUB_OUTPUT
@@ -573,6 +579,9 @@ runs:
           
           swish_api_key="${{ fromJson(inputs.secrets).SWISH_API_KEY_PROD }}"
           echo "SWISH_API_KEY=${swish_api_key}" >> $GITHUB_ENV
+        
+          app_secret="${{ fromJson(inputs.secrets).APP_SECRET }}"
+          echo "APP_SECRET=${app_secret}" >> $GITHUB_ENV
         
           app_type="prod"
           echo "APP_TYPE=${app_type}" >> $GITHUB_ENV
